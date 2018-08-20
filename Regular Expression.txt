@@ -1,0 +1,250 @@
+----------------------------------------so my topic is regular expressions in python-------------------------------------------------- 
+Regular Expression-
+
+regular expression is search the string , pattern of given easily
+
+-----------------------Some Import Fundamental find Out Regular Expression--------------------------------
+
+^-----------------------------Strating
+
+$----------------------------Ending
+
+[...]-----------------------Matches any single character in brackets
+
+[^...]---------------------Not Match any single Character in brackets
+
+\w-----------------------word (a-zA-Z0-9_)
+
+\W-----------------------Non word(.!*%@)
+
+\s------------------------Matches Whitespaces  equivalent to [\t\n\r]
+
+\S-----------------------Not Match Whitespaces
+
+\d-----------------------Matches digit
+
+\D---------------------Not Match digit
+
+\A---------------------Match begining of String
+
+\z---------------------Match ending of String
+
+\b--------------------Match Boundries 
+
+\n--------------------Match Newline
+
+\t--------------------Match tab
+
+------------------------------------------Three Main Function In Regular Expression----------------------------------------------
+
+import re
+
+1.match()
+2.search()
+3.findall()
+
+
+1.match()---
+	Match  function is help to match begining of string
+
+	re.match(pattern,string,flag)
+
+Ex-------
+	re.match("This","This is My First Matching Program")
+
+	#<re object: span(0,4) match='This'>
+
+
+	re.match("My","This is My First Matching Program")
+
+	#None   because match only match first string (i.e This )
+
+
+
+	re.match("this","This is My First Matching Program")
+
+	# None   because this is casesensitive language
+
+
+
+	re.match("This","This is My First Matching Program,This will help me to complete")
+
+	# <re.Match object; span=(0, 4), match='This'>  Because match match only first Element
+
+
+.start()
+.end()
+.group()
+
+	re.match("This","This is My First Matching Program").start()
+
+		# 0
+
+
+	re.match("This","This is My First Matching Program").end()
+
+		# 4
+
+
+	re.match("This","This is My First Matching Program").group()
+
+		# 'This'
+
+
+
+2.search()----------
+
+	re.search(pattern,string,flag)
+
+	This search the string anywhere from starting to ending of string 
+
+Ex-----------
+	re.search("My","This is My Search Function working")
+
+	#<search object: span(8,10) search='My'>
+
+
+	re.search("This","This is My Search Function working")
+
+	#<search object:span(0,4) search='This'>
+
+
+
+3.findall()-------------
+
+	re.findall(pattern,string,flag)
+
+	this function find all string from starting to ending how many type lies  in list form 
+
+Ex----------------
+
+	re.findall("a","This is a findall function where we find a string")
+
+	#[a , a , a]
+
+
+
+	---------------------------------Some Special Case of Match , Search , Findall----------------------------
+
+re.match("a|b","abcde")
+
+#<match object: span(0,1) match='a'>
+
+
+re.search("a|b","bcdae")
+
+#<search object:span(3,4) search='a'>
+
+re.findall("a|b","abcde")
+
+#[a  ,  b]
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Character Sets 
+
+\w------------Match (a-zA-Z0-9_)  Alphanumeric , Underscores
+\W------------Match non word (.@%#&)
+
+
+re.search('\w',"This is Searching")
+#'T'
+
+re.search('\w\w',"This is Searching")
+#'Th'
+
+re.search('\W',"@This is Searching")
+#	'@'
+
+re.search('\W\W',"#%is is Searching")
+#	'#%'
+
+
+\s---------------Matches Whitespaces  \t , \n , \r
+\S--------------Not Matches WhiteSpaces
+
+re.search('\s',"This is \nOur Searching Technique")
+
+#<search object:span(8,9) match=' ' >
+
+
+re.search('\S',"This is \nOur Searching Technique")
+
+#<search object: span(0,1) match='T'>
+
+re.search('\S\S',"$%This is \nOur Searching Technique")
+
+#<search object: span(0,2) match='$%'>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Quantifiers
+
++-----------------------------------------------------------1 or more Matches
+
+*---------------------------------------------------------0 or more Matches
+
+?---------------------------------------------------------0 or 1 matches Only
+
+{n:m}------------------------------------------------Specific given Number Matches 
+
+
+print(re.search(r'\w+',"This is Our Searching Technique"))
+
+# 'This'
+
+print(re.search(r'\w+\W',"This is Our Searching Technique"))
+
+# 'This  '
+
+print(re.search(r'\w+\W+\w',"This is Our Searching Technique"))
+
+# 'This is'
+
+print(re.search(r'\w*',"This is Our Searching Technique"))
+
+#'This'
+
+print(re.search(r'\w*',"  is Our Searching Technique"))
+# <re.Match object; span=(0, 0), match=' ' >
+
+print(re.search(r'\W*\w*'," is \nOur Searching Technique"))
+#<re.Match object; span=(0, 3), match=' is' >
+
+print(re.search(r'\w?',"This is Our Searching Technique"))
+
+# <re.Match object; span=(0, 1), match='T' >
+
+
+print(re.search(r'\w[0:]',"This is Our Searching Technique"))
+
+# 'This'
+
+print(re.search(r'\w[0:2]',"This is Our Searching Technique"))
+
+#'Th'
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Digits
+
+/d---------------------------------Matches only Digits
+/D--------------------------------Matches Non digits
+
+
+print(re.search(r'\d+',"12  345678"))
+
+#'12'
+
+print(re.search(r'\d+\W+\d+',"12  345678"))
+
+#'12  345678'
+
+print(re.search(r'\D+',"12  345678"))
+
+# ' '
+
+print(re.search(r'\D+',"asdf"))
+
+# ' asdf '
+
