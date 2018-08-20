@@ -1,0 +1,427 @@
+			function
+
+function is block of statements that perform the operations
+
+function is definded by def keyword
+
+function name must have pranthesis ( )  and colon :
+
+within function we pass parameters it may be any type
+
+function is reusble 
+
+function save time of programmer to code again
+
+it may be call many number of times
+
+
+			parameter
+
+during defining the function we pass some inputs that is known parameter
+
+
+			arguments
+
+calling a function we pass the value of parameter is known as arguments
+
+
+			Syntax of Function
+
+def  function_Name( parameter1 , parameter 2..........):
+
+		.......................................................
+		.......................................................
+		.......................................................
+
+
+
+			Define a function of Additions
+
+	def         add( a , b ):
+	    
+                         return       a+b
+
+
+			Calling a function 
+
+>>add(10 , 20)
+
+	# 30
+
+
+
+			Types of Arguments
+
+1----------Required Arguments
+
+	this is positional arguments that is used during calling the function
+
+def  add(a , b):
+
+return  a+b
+
+>>add( )		#Positional Errors  a , b values required
+
+
+
+2-----------Default Arguments
+
+	this is defined first  some keyword with value , if any case user not provide the value of 
+	this keyword then it takes as default
+
+def  add(a , 30):
+
+return  a+b
+
+>>add(10)
+
+	# 40
+
+>>add(20,30)
+
+	# 50
+
+
+3-------------Keyword Agruments
+
+	it is also a  feature to provide a specific  keyword value  for parameter
+
+def  add(a=100, b=200):
+
+return  a+b
+
+>>add( )
+
+	#300
+
+>>add(b=500)
+	
+	#600
+
+
+4----------------Variable length Arguments
+
+	this is special feature to provide more agruments value  instead of defined parameter
+	this is use a special symbol * before which variable we  want to provide dynamic values
+	it returns in tuple forms
+
+def   add( a , * b):
+
+	print(a)
+	print(b)
+
+>>add(10 , 20,30,40)
+
+		# 10
+		# (20,30,40)
+
+
+
+				Return Statement
+
+
+this is  returns  the value from function body to outside 
+it use the return keyword 
+
+def  add(a=40, b=50):
+
+return    a+b
+
+
+>>add( )
+
+	# return value 90 outside of function
+
+
+
+
+
+			Variables in Function
+
+there are two types of Variables 
+
+1-------------global variable
+
+	this is defined outside of  function body
+
+	it may be call inside function  and also outside the function body
+
+a=100
+b=200
+
+def   add( ):
+
+return  a+b
+
+>>add( )
+
+	#300
+
+>>a
+	#100
+
+>>b	
+	#200
+
+
+
+2--------------Local Variable
+
+this is defined inside the function body
+it only callable inside function  not  outside 
+
+def  add( ):
+
+	a=500
+	b=600
+
+return  a+b
+
+>>add( )
+
+	#1100
+
+>>a
+
+	#Error
+
+>>b
+
+	#Error
+
+
+
+
+Note --------
+
+ 	we can convert  any local varible into  global variable  by global keyword 
+
+	it will be work for local and  global both 
+
+def  add( ):
+ 	global a, b
+	a=800
+	b=400
+return  a+b
+
+>>add( )
+		#1200
+
+>>a
+		#800
+
+>>b
+		#400
+
+
+Note ----
+
+	In python if we have same name  of  global varible  and local variable then it not means 
+
+	that he will like same 
+	both will treat  different 
+	
+a=100
+b=200
+
+def       add():
+        
+               a=500
+               b=600
+
+return  a+b
+
+Important Note------------------Here in this function this will be give  high priority to  within
+		           write variables  not outside (global variable )
+
+
+>>add( )
+
+	# 1100
+
+>>a
+	#100
+
+>>b
+	#200
+
+
+
+
+
+				Nested Function
+
+def  number( ):
+	a=10
+	def  add(a=a):
+		return print(a+a)
+	
+	add()
+
+>>number( )
+		#20
+
+
+def   number(a ):
+
+	def  add( a=a)
+		return print(a+a)
+	
+	add( )
+
+>>number(10)
+
+		#20
+
+
+
+
+				Anonymous Functions
+
+These  functions  are  called  anonymous  because  they  are  not  declared  in   the   standard
+manner  by  using  the  def  keyword
+
+An anonymous function cannot be a direct call to print because lambda requires an
+expression
+
+
+Lambda  functions  have  their  own  local  namespace  and  cannot  access   variables
+other than those in their parameter list and those in the global namespace
+
+
+
+				Syntax
+
+lambda arg1 , arg2 , arg3 , arg4.......: Expression
+
+
+sum = lambda  a,b:a+b	
+
+>>print(sum(10,20))
+			#30
+
+
+
+
+				Symbol Table
+
+a symbol table is a data structure  maintained  by a compiler  which contains all necessary  information
+ about  program
+
+This symbol table  include  variable names  , methods , classes etc
+
+
+				Types of Symbol table
+
+global Symbol table
+
+local  Symbol table
+
+
+
+	Local Symbol Table--------
+
+	local symbol table stores all information  related to the  local scope  of the program
+	In python local symbol table is accessed  by locals( ) method
+
+	local scope could be within a function , within a class
+
+
+				Syntax of locals() function
+
+>>locals()
+	
+{'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <class '_frozen_importlib.BuiltinImporter'>, '__spec__': None, '__annotations__': {}, '__builtins__': <module 'builtins' (built-in)>}
+
+
+Note---
+	locals( ) method doesn't take any parameters
+
+
+
+>>> def add():
+	return locals()
+
+>>> add()
+{ }
+
+
+
+
+
+>>> def add():
+	present=True
+	return locals()
+
+>>> add()
+
+{'present': True}
+
+
+
+			Updating the  loacal variable by locals()
+
+>>def  add():
+	a=10
+	print(a)
+	locals().['a']=100
+	print(a)
+
+		#10
+		10
+
+Note----- locals( ) function does nots makes change in functions inside
+
+
+
+
+
+
+
+
+
+
+
+	
+	global Symbol Table---------
+
+	Global symbol table stores  all  information related to the global scope of the program
+	In python local symbol table is accessed  by globals( ) method
+
+	global scope contains all functions , variables , Which is not associated with any classs 
+	or functions
+
+
+
+
+				Synatx of globals( ) function
+
+Note----
+	globals( ) function doesn't  take any parameters
+	
+	globals( ) function returns the dictionary of the current global symbol table
+
+
+>>globals( )
+
+{'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <class '_frozen_importlib.BuiltinImporter'>, '__spec__': None, '__annotations__': {}, '__builtins__': <module 'builtins' (built-in)>}
+
+
+
+Note------
+
+	we can modify global variable  using globals( )
+
+>>age=20
+
+>>globals( )['age']=25
+
+>>print(age)
+		#25
+
+
+
+
+
+
+
